@@ -50,7 +50,9 @@ user "haproxy" do
   shell "/bin/false"
 end
 
-directory node['haproxy']['conf_dir']
+directory node['haproxy']['conf_dir'] do
+  recursive true
+end
 
 template "/etc/init.d/haproxy" do
   source "haproxy-init.erb"
