@@ -19,7 +19,8 @@
 
 include_recipe 'build-essential'
 
-node.set['haproxy']['conf_dir'] = "#{node['haproxy']['source']['prefix']}/etc"
+old_conf_dir = node['haproxy']['conf_dir']
+node.set['haproxy']['conf_dir'] = "#{node['haproxy']['source']['prefix']}#{old_conf_dir}"
 
 remote_file "#{Chef::Config[:file_cache_path]}/haproxy-#{node['haproxy']['source']['version']}.tar.gz" do
   source node['haproxy']['source']['url']
